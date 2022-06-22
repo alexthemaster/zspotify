@@ -33,10 +33,8 @@ class ZSpotify:
             except RuntimeError:
                 pass
         while True:
-            user_name = ''
-            while len(user_name) == 0:
-                user_name = input('Username: ')
-            password = getpass()
+            user_name = os.getenv('USERNAME')
+            password = os.getenv('PASSWORD')
             try:
                 conf = Session.Configuration.Builder().set_stored_credential_file(cred_location).build()
                 cls.SESSION = Session.Builder(conf).user_pass(user_name, password).create()
